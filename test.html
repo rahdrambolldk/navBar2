@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Button Navigation</title>
+    <style>
+        @font-face {
+            font-family: 'Gotham Rounded';
+            src: url(sources/GothamRounded-Light.woff) format('woff'), url(sources/GothamRounded-Light.woff2) format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            font-family: 'Gotham Rounded', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container styles for main and sub-buttons */
+        .button-container, .sub-buttons {
+            display: flex;
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            transition: transform 0.335s ease, opacity 0.35s ease;
+            padding: 10px 0;
+            gap: 10px; /* Space between buttons */
+        }
+
+        /* Styles for the main buttons */
+        .button-container a {
+            background: #05326e;
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 7px;
+            text-decoration: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            flex: 1;
+        }
+
+        /* Styles for the sub-buttons */
+        .sub-buttons a {
+            background: #009df0; /* New color for sub-buttons */
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 7px;
+            text-decoration: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            flex: 1;
+        }
+
+        /* Hidden state for the sub-buttons */
+        .sub-buttons {
+            opacity: 0;
+            transform: translateX(100%);
+            visibility: hidden;
+        }
+
+        /* Show sub-buttons with slide-in animation */
+        .sub-buttons.show {
+            opacity: 1;
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        /* Hide main buttons with slide-out animation */
+        .button-container.hide {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main button container -->
+    <div class="button-container">
+        <a href="https://my-personal-drive.com" target="_blank">Project References</a>
+        <a href="https://my-personal-blog.com" target="_blank">Expert Search Tool</a>
+        <a id="exampleButton" href="javascript:void(0);" onclick="showSubButtons()">Example#1</a>
+    </div>
+
+    <!-- Sub-buttons container -->
+    <div class="sub-buttons" id="subButtons">
+        <a href="https://example-sub1.com" target="_blank">Sub Example 1</a>
+        <a href="https://example-sub2.com" target="_blank">Sub Example 2</a>
+        <a href="javascript:void(0);" onclick="hideSubButtons()">Back</a>
+    </div>
+
+    <script>
+        const buttonContainer = document.querySelector('.button-container');
+        const subButtons = document.getElementById('subButtons');
+
+        function showSubButtons() {
+            buttonContainer.classList.add('hide'); // Trigger slide-out animation
+            subButtons.classList.add('show');      // Show sub-buttons with slide-in animation
+        }
+
+        function hideSubButtons() {
+            buttonContainer.classList.remove('hide'); // Bring back main buttons with slide-in animation
+            subButtons.classList.remove('show');      // Hide sub-buttons with slide-out animation
+        }
+    </script>
+</body>
+</html>
